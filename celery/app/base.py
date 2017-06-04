@@ -871,7 +871,7 @@ class Celery(object):
     def now(self):
         """Return the current time and date as a datetime."""
         from datetime import datetime
-        return datetime.utcnow().replace(tzinfo=self.timezone)
+        return self.timezone.fromutc(datetime.utcnow().replace(tzinfo=self.timezone))
 
     def select_queues(self, queues=None):
         """Select subset of queues.
